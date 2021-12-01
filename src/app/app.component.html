@@ -1,6 +1,7 @@
 <app-header></app-header>
 <div class="tabs">
-  <app-tab></app-tab>
-  <app-tab></app-tab>
-  <app-tab></app-tab>
+  <app-tab
+    *ngFor="let iterTask of tasks"
+    [task]="iterTask"   
+  ></app-tab>
 </div>
