@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
+import { Tasks } from './tasks';
 
 export type Todo = {
   id: number,
@@ -17,8 +19,8 @@ export interface Task {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  tasks: Task[]  = [
+export class AppComponent implements OnInit {
+  tasksInit: Task[]  = [
     {
       id: 1,
       title: "Семья",
@@ -43,4 +45,11 @@ export class AppComponent {
       ]
     }
   ]
+  tasks: Tasks | undefined;
+  constructor(private http: HttpClient){}
+
+  ngOnInit(){          
+    this.http.get('https://blooming-dawn-85383.herokuapp.com/projects').subscribe((data:any) => this.tasks=new Tasks(data));
+    console.log(this.tasks);
+}
 }
