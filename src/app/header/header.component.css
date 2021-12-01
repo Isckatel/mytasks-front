@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    position: relative;
+    height: 80px;
+    background-color: cornflowerblue;
+}
+
+.wraper-h1 {
+    margin: auto;
+    color: white;
+}
+
+h1 {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.new-task {
+    position: absolute;
+    top:30%;
+    right: 30px;   
+    font-weight: bold;
+    font-size: 2em;
+}
