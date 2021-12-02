@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Tasks } from './tasks';
 
 export type Todo = {
@@ -47,9 +47,10 @@ export class AppComponent implements OnInit {
   ]
   tasks: Tasks | undefined;
   constructor(private http: HttpClient){}
+  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
 
   ngOnInit(){          
-    this.http.get('https://blooming-dawn-85383.herokuapp.com/projects').subscribe((data:any) => this.tasks=new Tasks(data));
+    this.http.get('https://blooming-dawn-85383.herokuapp.com/projects', this.options).subscribe((data:any) => this.tasks=new Tasks(data));
     console.log(this.tasks);
 }
 }
