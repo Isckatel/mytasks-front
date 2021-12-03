@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
   //https://blooming-dawn-85383.herokuapp.com/projects
   //http://127.0.0.1:3000/projects
   ngOnInit(){          
-    this.http.get('http://127.0.0.1:3000/projects', this.options)
+    this.http.get('https://blooming-dawn-85383.herokuapp.com/projects', this.options)
     .subscribe((data:Tasks) =>{
       // @ts-ignore
       this.tasksInit = data;  
