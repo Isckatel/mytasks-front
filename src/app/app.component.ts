@@ -44,13 +44,17 @@ export class AppComponent implements OnInit {
         {id: 1, text: "Сходить на субботнкик", isCompleted: false}        
       ]
     }
-  ]
+  ]  
   tasks: Tasks | undefined;
   constructor(private http: HttpClient){}
   private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
-
+  //https://blooming-dawn-85383.herokuapp.com/projects
+  //http://127.0.0.1:3000/projects
   ngOnInit(){          
-    this.http.get('https://blooming-dawn-85383.herokuapp.com/projects', this.options).subscribe((data:any) => this.tasks=new Tasks(data));
-    console.log(this.tasks);
-}
+    this.http.get('http://127.0.0.1:3000/projects', this.options)
+    .subscribe((data:Tasks) =>{
+      // @ts-ignore
+      this.tasksInit = data;  
+    }); 
+  }
 }
