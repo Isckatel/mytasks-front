@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { TabComponent } from './tab/tab.component';
 import { TaskComponent } from './task/task.component';
 import { ModalwinComponent } from './modalwin/modalwin.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ModalwinComponent } from './modalwin/modalwin.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

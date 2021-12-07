@@ -9,13 +9,18 @@
     display: isShowModal ? 'block' :'none'
   }">
     <p>Новая задача</p>
-    <form>
-        <input placeholder="Название задачи.."/><br/>
-        <select size="1">
-            <option>Пункт 1</option>
-            <option>Пункт 2</option>
+    <form [formGroup]="modalForm">
+        <input formControlName="task" placeholder="Название задачи.." /><br/>
+        <select formControlName="titles" (change)="changeTitles($event)" >
+            <option *ngFor="let title of tasks">
+              {{title.title}}
+            </option>
+            <option>Новая задача</option>
           </select><br/>
+        <input 
+          [ngStyle]="{display: newTitle == 'Новая задача'   ? 'block' :'none'}"
+          class="newTitles" formControlName="newTitles"/>  
         <button (click)="cansel()">Отмена</button>
-        <button (click)="add()">ОК</button>
+        <button (click)="add()" >ОК</button>
     </form>
 </div>
