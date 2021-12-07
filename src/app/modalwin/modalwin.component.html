@@ -1,0 +1,21 @@
+<div class ='modal'
+[ngStyle]="{
+    display: isShowModal ? 'block' :'none'
+  }">
+</div>
+<div class="new-task" (click)="showModal()">+</div>
+<div class='win'
+[ngStyle]="{
+    display: isShowModal ? 'block' :'none'
+  }">
+    <p>Новая задача</p>
+    <form>
+        <input placeholder="Название задачи.."/><br/>
+        <select size="1">
+            <option>Пункт 1</option>
+            <option>Пункт 2</option>
+          </select><br/>
+        <button (click)="cansel()">Отмена</button>
+        <button (click)="add()">ОК</button>
+    </form>
+</div>

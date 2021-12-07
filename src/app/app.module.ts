@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TabComponent } from './tab/tab.component';
 import { TaskComponent } from './task/task.component';
+import { ModalwinComponent } from './modalwin/modalwin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TabComponent,
-    TaskComponent
+    TaskComponent,
+    ModalwinComponent
   ],
   imports: [
     BrowserModule,
