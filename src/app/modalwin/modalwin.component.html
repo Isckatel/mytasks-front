@@ -15,11 +15,12 @@
             <option *ngFor="let title of tasks">
               {{title.title}}
             </option>
-            <option>Новая задача</option>
+            <option>Новая категория</option>
           </select><br/>
         <input 
-          [ngStyle]="{display: newTitle == 'Новая задача'   ? 'block' :'none'}"
-          class="newTitles" formControlName="newTitles"/>  
+          [ngStyle]="{display: newTitle == 'Новая категория'   ? 'block' :'none'}"
+          class="newTitles" formControlName="newTitles"
+          placeholder="Название категории"/>  
         <button (click)="cansel()">Отмена</button>
         <button (click)="add()" >ОК</button>
     </form>

@@ -27,14 +27,14 @@ export class ModalwinComponent implements OnInit {
         {id: 2, text: "Инит значение", isCompleted: false}
       ]
     }
-    ]
+    ]    
   }
   ngOnInit(): void {
-    console.log(this.tasks);
+    this.newTitle = this.tasks[0].title;
   }
 
   changeTitles(e:any) {
-    this.newTitle = e.target.value
+    this.newTitle = e.target.value;
   }
 
   showModal() :void {
@@ -45,9 +45,25 @@ export class ModalwinComponent implements OnInit {
     this.isShowModal = !this.isShowModal;
   }
 
-  add() :void {
-    console.log(this.modalForm.controls['newTitles']);
+  add() :void {    
+    let jbody;   
+    if (this.modalForm.controls['newTitles'].value == '' 
+        || this.modalForm.controls['newTitles'].value == null ) {
+      //Задача в имеющемся разделе
+      jbody = {
+        title: this.newTitle,
+        text: this.modalForm.controls['task'].value
+      }      
+    } else {
+      //Задача в новом разделе
+      jbody = {
+        title: this.modalForm.controls['newTitles'].value,
+        text: this.modalForm.controls['task'].value        
+      }
+      this.newTitle ='';
+      this.modalForm.controls['newTitles'].setValue('');
+    }
     this.isShowModal = false;
-  }
 
+  }
 }
