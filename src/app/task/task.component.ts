@@ -21,10 +21,10 @@ export class TaskComponent implements OnInit {
   constructor(private http: HttpClient) { 
     this.todo = {id: 1, text: "Инит значение", isCompleted: false}
   }
-
+//http://127.0.0.1:3000/projects/1/todo/
   toggleCompleted(ev:any): void {
     console.log(ev.target.checked);
-    this.http.patch('http://127.0.0.1:3000/projects/1/todo/' + this.todo.id, {id:this.todo.id})
+    this.http.patch('https://blooming-dawn-85383.herokuapp.com/projects/1/todo/' + this.todo.id, {id:this.todo.id})
     .subscribe((data:any) =>{
       // @ts-ignore
       console.log(data);
