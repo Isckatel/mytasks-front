@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       ]
     }
   ]  
-  tasks: Tasks | undefined;
+  tasks: Tasks | undefined; 
   constructor(private http: HttpClient){}
   private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
   //https://blooming-dawn-85383.herokuapp.com/projects

@@ -5,8 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
   <div class="header">
     <div class="wraper-h1">
-      <h1>Задачи</h1>
-      <div class="new-task">+</div>
+      <h1>Задачи</h1>      
     </div>
   </div>
   `,

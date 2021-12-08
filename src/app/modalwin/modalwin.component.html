@@ -1,0 +1,27 @@
+<div class ='modal'
+[ngStyle]="{
+    display: isShowModal ? 'block' :'none'
+  }">
+</div>
+<div class="new-task" (click)="showModal()">+</div>
+<div class='win'
+[ngStyle]="{
+    display: isShowModal ? 'block' :'none'
+  }">
+    <p>Новая задача</p>
+    <form [formGroup]="modalForm">
+        <input formControlName="task" placeholder="Название задачи.." /><br/>
+        <select formControlName="titles" (change)="changeTitles($event)" >
+            <option *ngFor="let title of tasks">
+              {{title.title}}
+            </option>
+            <option>Новая категория</option>
+          </select><br/>
+        <input 
+          [ngStyle]="{display: newTitle == 'Новая категория'   ? 'block' :'none'}"
+          class="newTitles" formControlName="newTitles"
+          placeholder="Название категории"/>  
+        <button (click)="cansel()">Отмена</button>
+        <button (click)="add()" >ОК</button>
+    </form>
+</div>
