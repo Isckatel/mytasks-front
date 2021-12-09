@@ -21,7 +21,9 @@
           [ngStyle]="{display: newTitle == 'Новая категория'   ? 'block' :'none'}"
           class="newTitles" formControlName="newTitles"
           placeholder="Название категории"/>  
-        <button (click)="cansel()">Отмена</button>
-        <button (click)="add()" >ОК</button>
+        <button (click)="cansel()"
+        mat-raised-button color="primary">Отмена</button>
+        <button (click)="add()"
+        mat-raised-button color="primary">ОК</button>
     </form>
 </div>

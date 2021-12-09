@@ -8,6 +8,9 @@ import { TabComponent } from './tab/tab.component';
 import { TaskComponent } from './task/task.component';
 import { ModalwinComponent } from './modalwin/modalwin.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import { MaterialAppModule } from './ngmaterial.module';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     TabComponent,
     TaskComponent,
-    ModalwinComponent
+    ModalwinComponent    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NoopAnimationsModule,
+    MatSliderModule,
+    MaterialAppModule
   ],
   providers: [],
   bootstrap: [AppComponent]
