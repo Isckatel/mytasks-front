@@ -66,7 +66,7 @@ export class ModalwinComponent implements OnInit {
       this.newTitle ='';      
     }
     this.isShowModal = false;
-    this.http.post('http://127.0.0.1:3000/todos',jbody)
+    this.http.post('https://mytasks-ruby.herokuapp.com/todos',jbody)
     .subscribe((data:any) =>{
       let newTask: qTask = {
         id: data.id,
@@ -85,9 +85,6 @@ export class ModalwinComponent implements OnInit {
   sendNewTask(data:qTask) :void {
     this.newTask.emit({
       ...data
-      // id: data.id,
-      // text: data.text,
-      // isCompleted: data.isCompleted
     });
   }
 }
