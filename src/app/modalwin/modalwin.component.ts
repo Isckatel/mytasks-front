@@ -66,7 +66,7 @@ export class ModalwinComponent implements OnInit {
       this.newTitle ='';      
     }
     this.isShowModal = false;
-    this.http.post('https://mytasks-ruby.herokuapp.com/todos',jbody)
+    this.http.post('https://mytasks-ruby.herokuapp.com/todos', jbody, this.options)
     .subscribe((data:any) =>{
       let newTask: qTask = {
         id: data.id,
