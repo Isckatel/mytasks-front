@@ -6,6 +6,15 @@ export type Todo = {
   id: number,
   text: string,
   isCompleted: boolean
+
+}
+
+export type qTask = {
+  id: number,
+  text: string,
+  isCompleted: boolean
+  title_id: number,
+  newTitle: string
 }
 
 export interface Task {
@@ -56,5 +65,15 @@ export class AppComponent implements OnInit {
       // @ts-ignore
       this.tasksInit = data;  
     }); 
+  }
+  onNewTask(task:qTask) {
+    console.log(task);
+    if (!task.newTitle) {  
+      this.tasksInit.forEach(el => {
+        if (el.id == task.title_id) el.todos.push({id: task.id, text: task.text, isCompleted: task.isCompleted});
+      });
+    } else {
+      this.tasksInit.push({id: task.title_id, title: task.newTitle, todos: [{id: task.id, text: task.text, isCompleted: task.isCompleted}]})
+    }
   }
 }

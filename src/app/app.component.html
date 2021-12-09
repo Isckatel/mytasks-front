@@ -5,4 +5,4 @@
     [task]="iterTask"   
   ></app-tab>
 </div>
-<app-modalwin [tasks]="tasksInit"></app-modalwin>
+<app-modalwin (newTask)='onNewTask($event)' [tasks]="tasksInit"></app-modalwin>
