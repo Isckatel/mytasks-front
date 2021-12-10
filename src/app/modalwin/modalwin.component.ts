@@ -19,7 +19,7 @@ export class ModalwinComponent implements OnInit {
     "task": new FormControl("", [Validators.required]),
     "titles": new FormControl(),
     "newTitles": new FormControl()
-});
+  });
 
   constructor( private http: HttpClient) { 
     this.tasks = [{
@@ -79,7 +79,6 @@ export class ModalwinComponent implements OnInit {
       this.sendNewTask(newTask);    
       console.log(newTask);      
     }); 
-
   }
 
   sendNewTask(data:qTask) :void {

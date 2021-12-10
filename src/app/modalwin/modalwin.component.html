@@ -4,24 +4,41 @@
   }">
 </div>
 <div class="new-task" (click)="showModal()">+</div>
-<div class='win'
-[ngStyle]="{
-    display: isShowModal ? 'block' :'none'
-  }">
-    <p>Новая задача</p>
+<div [ngClass]="newTitle == 'Новая категория' ? 'win' : 'win-min'"
+  [ngStyle]="{display: isShowModal ? 'block' :'none'}"
+  >
+    <h3>Новая задача</h3>
+
     <form [formGroup]="modalForm">
-        <input formControlName="task" placeholder="Название задачи.." /><br/>
-        <select formControlName="titles" (change)="changeTitles($event)" >
+      <mat-form-field class="example-full-width"  appearance="fill">
+        <input matInput formControlName="task" placeholder="Название задачи.." /><br/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <select matNativeControl required formControlName="titles" (change)="changeTitles($event)" 
+        style="width:100% !important">
             <option *ngFor="let title of tasks">
               {{title.title}}
             </option>
             <option>Новая категория</option>
-          </select><br/>
-        <input 
-          [ngStyle]="{display: newTitle == 'Новая категория'   ? 'block' :'none'}"
-          class="newTitles" formControlName="newTitles"
-          placeholder="Название категории"/>  
-        <button (click)="cansel()">Отмена</button>
-        <button (click)="add()" >ОК</button>
+        </select><br/>
+      </mat-form-field> <br/>
+
+      <mat-form-field
+        [ngStyle]="{display: newTitle == 'Новая категория' ? 'block' :'none'}"
+         class="example-full-width"  appearance="fill">  
+        <input matInput
+           [ngStyle]="{display: newTitle == 'Новая категория' ? 'block' :'none'}"
+           class="newTitles" formControlName="newTitles"
+           placeholder="Название категории"
+        />
+      </mat-form-field>  
+
+      <button (click)="cansel()"
+        mat-raised-button color="basic"
+        style="background-color: silver; color:white;">Отмена</button>
+      <button (click)="add()"
+        mat-raised-button color="primary">ОК</button>
+        
     </form>
 </div>
