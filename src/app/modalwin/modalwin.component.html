@@ -8,10 +8,12 @@
   [ngStyle]="{display: isShowModal ? 'block' :'none'}"
   >
     <h3>Новая задача</h3>
+
     <form [formGroup]="modalForm">
       <mat-form-field class="example-full-width"  appearance="fill">
         <input matInput formControlName="task" placeholder="Название задачи.." /><br/>
       </mat-form-field>
+
       <mat-form-field appearance="fill">
         <select matNativeControl required formControlName="titles" (change)="changeTitles($event)" 
         style="width:100% !important">
@@ -21,18 +23,22 @@
             <option>Новая категория</option>
         </select><br/>
       </mat-form-field> <br/>
-        <mat-form-field
-        [ngStyle]="{display: newTitle == 'Новая категория'   ? 'block' :'none'}"
+
+      <mat-form-field
+        [ngStyle]="{display: newTitle == 'Новая категория' ? 'block' :'none'}"
          class="example-full-width"  appearance="fill">  
-          <input matInput
-            [ngStyle]="{display: newTitle == 'Новая категория'   ? 'block' :'none'}"
-            class="newTitles" formControlName="newTitles"
-            placeholder="Название категории"/>
-        </mat-form-field>  
-        <button (click)="cansel()"
+        <input matInput
+           [ngStyle]="{display: newTitle == 'Новая категория' ? 'block' :'none'}"
+           class="newTitles" formControlName="newTitles"
+           placeholder="Название категории"
+        />
+      </mat-form-field>  
+
+      <button (click)="cansel()"
         mat-raised-button color="basic"
         style="background-color: silver; color:white;">Отмена</button>
-        <button (click)="add()"
+      <button (click)="add()"
         mat-raised-button color="primary">ОК</button>
+        
     </form>
 </div>

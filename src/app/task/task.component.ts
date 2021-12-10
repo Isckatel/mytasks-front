@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Todo } from '../app.component';
+import { oneTask } from '../app.component';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
@@ -16,7 +16,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class TaskComponent implements OnInit {
 
-  @Input() todo: Todo   
+  @Input() todo: oneTask   
 
   constructor(private http: HttpClient) { 
     this.todo = {id: 1, text: "Инит значение", isCompleted: false}
@@ -34,8 +34,6 @@ export class TaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  
+  }  
 
 }
