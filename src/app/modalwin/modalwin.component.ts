@@ -76,6 +76,8 @@ export class ModalwinComponent implements OnInit {
         newTitle: this.modalForm.controls['newTitles'].value
       };
       this.modalForm.controls['newTitles'].setValue('');
+      this.modalForm.controls['task'].setValue(''); 
+      this.modalForm.controls['titles'].setValue(this.tasks[0].title);
       this.sendNewTask(newTask);    
       console.log(newTask);      
     }); 
