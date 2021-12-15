@@ -14,6 +14,11 @@
         <input matInput formControlName="task" placeholder="Название задачи.." /><br/>
       </mat-form-field>
 
+      <div class="alert"
+      *ngIf="modalForm.controls['task'].invalid && modalForm.controls['task'].touched">
+      Не указана задача
+      </div>
+
       <mat-form-field appearance="fill">
         <select matNativeControl required formControlName="titles" (change)="changeTitles($event)" 
         style="width:100% !important">
@@ -32,12 +37,17 @@
            class="newTitles" formControlName="newTitles"
            placeholder="Название категории"
         />
-      </mat-form-field>  
+      </mat-form-field>
+
+      <div class="alert"
+      *ngIf="modalForm.controls['newTitles'].invalid && modalForm.controls['newTitles'].touched">
+      Не указано имя новой категории
+      </div> 
 
       <button (click)="cansel()"
         mat-raised-button color="basic"
         style="background-color: silver; color:white;">Отмена</button>
-      <button (click)="add()"
+      <button (click)="add()" [disabled]="modalForm.invalid"
         mat-raised-button color="primary">ОК</button>
         
     </form>
