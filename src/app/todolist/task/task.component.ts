@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { oneTask } from '../app.component';
+import { oneTask } from '../../app.component';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Task, qTask} from '../app.component';
+import { Task, qTask} from '../../app.component';
 
 @Component({
   selector: 'app-modalwin',
