@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Tasks } from './tasks';
+import { HttpService } from './todolist/http.service';
 
 export type oneTask = {
   id: number,
@@ -26,7 +26,8 @@ export interface Task {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [HttpService]
 })
 export class AppComponent implements OnInit {
   tasksInit: Task[]  = [
@@ -48,12 +49,11 @@ export class AppComponent implements OnInit {
     }
   ]  
   tasks: Tasks | undefined; 
-  constructor(private http: HttpClient){}
-  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
-  //https://blooming-dawn-85383.herokuapp.com/projects
-  //http://127.0.0.1:3000/projects
-  ngOnInit(){          
-    this.http.get('http://127.0.0.1:3000/projects', this.options)
+
+  constructor(private httpService: HttpService){}  
+
+  ngOnInit(){ 
+    this.httpService.getData()
     .subscribe((data:Tasks) =>{
       // @ts-ignore
       this.tasksInit = data;  

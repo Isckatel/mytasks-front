@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { oneTask } from '../../app.component';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-task',
@@ -16,15 +16,15 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class TaskComponent implements OnInit {
 
-  @Input() todo: oneTask   
+  @Input() todo: oneTask 
 
-  constructor(private http: HttpClient) { 
+  constructor(private httpService: HttpService){  
     this.todo = {id: 1, text: "Инит значение", isCompleted: false}
   }
 
   toggleCompleted(ev:any): void {
-    console.log(ev.target.checked);
-    this.http.patch('http://127.0.0.1:3000/projects/1/todo/' + this.todo.id, {id:this.todo.id})
+    console.log(ev.target.checked);    
+    this.httpService.changeCompleted(this.todo.id)
     .subscribe((data:any) =>{
       // @ts-ignore
       console.log(data);
