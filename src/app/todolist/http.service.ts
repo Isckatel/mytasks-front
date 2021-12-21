@@ -1,6 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-  
+
+type bodyPost = {
+    title: string,
+    text: string
+}
+
 @Injectable()
 export class HttpService{
     constructor(private http: HttpClient){ }
@@ -14,10 +19,10 @@ export class HttpService{
     }
 
     changeCompleted(inputId: number) {
-        return this.http.patch(this.url + '/projects/1/todo/' + inputId, {id:inputId})
+        return this.http.patch(this.url + 'projects/1/todo/' + inputId, {id:inputId})
     }
 
-    addTask() {
-        
+    addTask(body: bodyPost) {
+        return this.http.post(this.url +'todos', body)
     }
 }

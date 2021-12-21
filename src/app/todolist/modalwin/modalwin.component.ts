@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Task, qTask} from '../../app.component';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-modalwin',
@@ -10,8 +10,7 @@ import { Task, qTask} from '../../app.component';
 })
 export class ModalwinComponent implements OnInit {
   isShowModal = false;
-  newTitle = '';
-  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };  
+  newTitle = '';    
   @Input() tasks:Array<Task>;
   @Output() newTask = new EventEmitter<qTask>();
 
@@ -21,7 +20,7 @@ export class ModalwinComponent implements OnInit {
     "newTitles": new FormControl()
   });
 
-  constructor( private http: HttpClient) { 
+  constructor(private httpService: HttpService){ 
     this.tasks = [{
       id: 1,
       title: "Семья",
@@ -73,7 +72,8 @@ export class ModalwinComponent implements OnInit {
       this.newTitle ='';      
     }
     this.isShowModal = false;
-    this.http.post('http://127.0.0.1:3000/todos',jbody)
+    //this.http.post('http://127.0.0.1:3000/todos',jbody)
+    this.httpService.addTask(jbody)
     .subscribe((data:any) =>{
       let newTask: qTask = {
         id: data.id,
