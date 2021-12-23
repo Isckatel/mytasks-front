@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Task} from '../../app.component';
+import { Category } from '../models/category.model';
 
 @Component({
   selector: 'app-tab',
@@ -7,7 +7,7 @@ import { Task} from '../../app.component';
   styleUrls: ['./tab.component.css']
 })
 export class TabComponent implements OnInit {
-  @Input() task:Task;
+  @Input() task: Category;
   constructor() {
     this.task = {
       id: 1,

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Task, qTask} from '../../app.component';
 import { HttpService } from '../http.service';
+import { Category } from '../models/category.model';
+import { qTask } from '../models/task.model';
 
 @Component({
   selector: 'app-modalwin',
@@ -11,7 +12,7 @@ import { HttpService } from '../http.service';
 export class ModalwinComponent implements OnInit {
   isShowModal = false;
   newTitle = '';    
-  @Input() tasks:Array<Task>;
+  @Input() tasks:Array<Category>;
   @Output() newTask = new EventEmitter<qTask>();
 
   modalForm : FormGroup = new FormGroup({             
@@ -78,8 +79,8 @@ export class ModalwinComponent implements OnInit {
         id: data.id,
         text: data.text,
         isCompleted: data.isCompleted,
-        title_id: data.title_id,
-        newTitle: this.modalForm.controls['newTitles'].value
+        category_id: data.title_id,
+        newCategory: this.modalForm.controls['newTitles'].value
       };
       this.modalForm.controls['newTitles'].setValue('');
       this.modalForm.controls['task'].setValue(''); 

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { oneTask } from '../../app.component';
 import { HttpService } from '../http.service';
+import { Task } from '../models/task.model';
 
 @Component({
   selector: 'app-task',
@@ -16,7 +16,7 @@ import { HttpService } from '../http.service';
 })
 export class TaskComponent implements OnInit {
 
-  @Input() todo: oneTask 
+  @Input() todo: Task 
 
   constructor(private httpService: HttpService){  
     this.todo = {id: 1, text: "Инит значение", isCompleted: false}

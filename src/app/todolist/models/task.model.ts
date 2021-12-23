@@ -2,11 +2,16 @@ export interface ITask {
     id: number;
     text: string;
     isCompleted: boolean;
-    category_id?: number;
-    newCategory?: string;
+    // category_id?: number;
+    // newCategory?: string;
 }
 
-export class TaskTest {
+export interface IqTask extends ITask {
+    category_id: number;
+    newCategory: string;
+}
+
+export class Task {
     id;
     text;
     isCompleted;
@@ -18,10 +23,10 @@ export class TaskTest {
 }
 
 //Ответ от сервера на создание задачи
-export class qTaskTest extends TaskTest  {
+export class qTask extends Task  {
     category_id;
     newCategory; //Чтобы не обновлять весь список задач с сервера    
-    constructor(taskData: ITask) {
+    constructor(taskData: IqTask) {
         super(taskData);
         this.category_id = taskData.category_id;
         this.newCategory = taskData.newCategory;
