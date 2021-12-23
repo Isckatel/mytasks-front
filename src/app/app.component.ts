@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Tasks } from './tasks';
 import { HttpService } from './todolist/http.service';
+import { TaskTest, qTaskTest } from './todolist/models/task.model';
+import { plainToClass, plainToClassFromExist } from 'class-transformer';
+import { Category, ICategory } from './todolist/models/category.model';
 
 export type oneTask = {
   id: number,
@@ -14,7 +17,7 @@ export type qTask = {
   text: string,
   isCompleted: boolean
   title_id: number,
-  newTitle: string
+  newTitle: string //Чтобы не обновлять весь список задач с сервера
 }
 
 export interface Task {
@@ -53,12 +56,24 @@ export class AppComponent implements OnInit {
   constructor(private httpService: HttpService){}  
 
   ngOnInit(){ 
+    // this.httpService.getData()
+    // .subscribe((data:Tasks) =>{
+    //   // @ts-ignore
+    //   this.tasksInit = data;  
+    // });
     this.httpService.getData()
-    .subscribe((data:Tasks) =>{
-      // @ts-ignore
-      this.tasksInit = data;  
-    }); 
+    .subscribe( 
+      (data: any) => {
+      this.tasksInit = data; 
+      let x =  plainToClassFromExist(Category, data as Object[]);
+      console.log(x);
+    }
+    );
+    //plainToClass(Category, data as Object[])   
+    let someTask = new TaskTest({id:1, text:'a', isCompleted: false});
+    let qsomeTask = new qTaskTest({id:1, text:'a', isCompleted: false, category_id:1, newCategory: 'b'});    
   }
+  //Обновим список задач после создания новой
   onNewTask(task:qTask) {
     console.log(task);
     if (!task.newTitle) {  

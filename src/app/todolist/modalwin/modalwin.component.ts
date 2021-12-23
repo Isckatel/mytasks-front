@@ -72,7 +72,6 @@ export class ModalwinComponent implements OnInit {
       this.newTitle ='';      
     }
     this.isShowModal = false;
-    //this.http.post('http://127.0.0.1:3000/todos',jbody)
     this.httpService.addTask(jbody)
     .subscribe((data:any) =>{
       let newTask: qTask = {
