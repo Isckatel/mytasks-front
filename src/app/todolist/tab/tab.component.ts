@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Category } from '../models/category.model';
 
 @Component({
@@ -6,7 +6,7 @@ import { Category } from '../models/category.model';
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.css']
 })
-export class TabComponent implements OnInit {
+export class TabComponent {
   @Input() category: Category;
   constructor() {
     this.category = {
@@ -17,9 +17,5 @@ export class TabComponent implements OnInit {
         {id: 2, text: "Инит значение", isCompleted: false}
       ]
     }
-   }
-
-  ngOnInit(): void {
-  }
-
+   }  
 }

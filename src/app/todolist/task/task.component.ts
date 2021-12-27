@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Task } from '../models/task.model';
 
@@ -14,7 +14,7 @@ import { Task } from '../models/task.model';
   `,
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent  {
 
   @Input() task: Task 
 
@@ -22,18 +22,11 @@ export class TaskComponent implements OnInit {
     this.task = {id: 1, text: "Инит значение", isCompleted: false}
   }
 
-  toggleCompleted(ev:any): void {
-    console.log(ev.target.checked);    
+  toggleCompleted(ev:any): void {   
     this.httpService.changeCompleted(this.task.id)
     .subscribe((data:any) =>{
-      // @ts-ignore
-      console.log(data);
       ev.target.checked = data.isCompleted;
       this.task.isCompleted = data.isCompleted; 
     }); 
   }
-
-  ngOnInit(): void {
-  }  
-
 }
