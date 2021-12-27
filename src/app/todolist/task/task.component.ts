@@ -16,11 +16,11 @@ import { Task } from '../models/task.model';
 })
 export class TaskComponent  {
 
-  @Input() task: Task 
+  @Input() task!: Task; 
 
   constructor(private httpService: HttpService){  
-    this.task = {id: 1, text: "Инит значение", isCompleted: false}
-  }
+    // this.task = {id: 1, text: "Инит значение", isCompleted: false}
+  } 
 
   toggleCompleted(ev:any): void {   
     this.httpService.changeCompleted(this.task.id)

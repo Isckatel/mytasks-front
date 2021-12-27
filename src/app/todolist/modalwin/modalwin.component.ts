@@ -22,15 +22,7 @@ export class ModalwinComponent implements OnInit {
   });
 
   constructor(private httpService: HttpService){ 
-    this.tasks = [{
-      id: 1,
-      title: "Семья",
-      todos: [
-        {id: 1, text: "Инит значение", isCompleted: false},
-        {id: 2, text: "Инит значение", isCompleted: false}
-      ]
-    }
-    ]    
+    this.tasks = [];    
   }
   ngOnInit(): void {
     this.newTitle = this.tasks[0].title;
