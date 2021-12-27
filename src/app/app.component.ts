@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from './todolist/http.service';
 import { qTask } from './todolist/models/task.model';
 import { plainToClassFromExist } from 'class-transformer';
-import { Category, ICategory } from './todolist/models/category.model';
+import { Category } from './todolist/models/category.model';
 
 @Component({
   selector: 'app-root',
@@ -36,11 +36,8 @@ export class AppComponent implements OnInit {
     this.httpService.getData()
     .subscribe( 
       (data: any) => {
-      this.categorys = data; 
-      let x =  plainToClassFromExist(Category, data as Object[]);
-      console.log(x);
-    }
-    );
+      this.categorys = plainToClassFromExist(this.categorys, data);
+    });
   }
   //Обновим список задач после создания новой
   onNewTask(task:qTask) {

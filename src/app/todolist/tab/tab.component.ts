@@ -7,9 +7,9 @@ import { Category } from '../models/category.model';
   styleUrls: ['./tab.component.css']
 })
 export class TabComponent implements OnInit {
-  @Input() task: Category;
+  @Input() category: Category;
   constructor() {
-    this.task = {
+    this.category = {
       id: 1,
       title: "Семья",
       todos: [

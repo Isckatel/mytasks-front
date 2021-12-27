@@ -6,30 +6,30 @@ import { Task } from '../models/task.model';
   selector: 'app-task',
   template: `
   <div class='task'>
-    <input (click)="toggleCompleted($event)" [checked]="todo.isCompleted" type="checkbox" />
+    <input (click)="toggleCompleted($event)" [checked]="task.isCompleted" type="checkbox" />
     <span [ngStyle]="{
-      textDecoration: todo.isCompleted ? 'line-through' :'none'
-    }">{{todo.text}}</span>
+      textDecoration: task.isCompleted ? 'line-through' :'none'
+    }">{{task.text}}</span>
   </div>
   `,
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
 
-  @Input() todo: Task 
+  @Input() task: Task 
 
   constructor(private httpService: HttpService){  
-    this.todo = {id: 1, text: "Инит значение", isCompleted: false}
+    this.task = {id: 1, text: "Инит значение", isCompleted: false}
   }
 
   toggleCompleted(ev:any): void {
     console.log(ev.target.checked);    
-    this.httpService.changeCompleted(this.todo.id)
+    this.httpService.changeCompleted(this.task.id)
     .subscribe((data:any) =>{
       // @ts-ignore
       console.log(data);
       ev.target.checked = data.isCompleted;
-      this.todo.isCompleted = data.isCompleted; 
+      this.task.isCompleted = data.isCompleted; 
     }); 
   }
 

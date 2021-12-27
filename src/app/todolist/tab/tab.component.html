@@ -1,9 +1,9 @@
 <div class="tab">
-    <div class="title"> {{task.title}}</div>
+    <div class="title"> {{category.title}}</div>
     <hr>
     <app-task        
-        *ngFor="let iterTask of task.todos"
-        [todo]="iterTask"
+        *ngFor="let iterTask of category.todos"
+        [task]="iterTask"
     ></app-task>
 
 </div>
