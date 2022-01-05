@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
     this.httpService.getData()
     .subscribe( 
       (data: any) => {
+      console.log(data);
       this.categorys = plainToClassFromExist(this.categorys, data);
     });
   }
@@ -27,10 +28,10 @@ export class AppComponent implements OnInit {
     console.log(task);
     if (!task.newCategory) {  
       this.categorys.forEach(el => {
-        if (el.id == task.category_id) el.todos.push({id: task.id, text: task.text, isCompleted: task.isCompleted});
+        if (el.id == task.category_id) el.todos.push({id: task.id, text: task.text, isCompleted: task.isCompleted, category_id: task.category_id});
       });
     } else {
-      this.categorys.push({id: task.category_id, title: task.newCategory, todos: [{id: task.id, text: task.text, isCompleted: task.isCompleted}]})
+      this.categorys.push({id: task.category_id, title: task.newCategory, todos: [{id: task.id, text: task.text, isCompleted: task.isCompleted, category_id: task.category_id}]})
     }
   }
 }
