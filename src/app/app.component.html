@@ -1,8 +1,8 @@
 <app-header></app-header>
 <div class="tabs">
   <app-tab
-    *ngFor="let iterTask of tasksInit"
-    [task]="iterTask"   
+    *ngFor="let iterCat of categorys"
+    [category]="iterCat"   
   ></app-tab>
 </div>
-<app-modalwin (newTask)='onNewTask($event)' [tasks]="tasksInit"></app-modalwin>
+<app-modalwin (newTask)='onNewTask($event)' [tasks]="categorys"></app-modalwin>

@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Task, qTask} from '../app.component';
+import { HttpService } from '../http.service';
+import { Category } from '../models/category.model';
+import { qTask } from '../models/task.model';
 
 @Component({
   selector: 'app-modalwin',
@@ -10,9 +11,8 @@ import { Task, qTask} from '../app.component';
 })
 export class ModalwinComponent implements OnInit {
   isShowModal = false;
-  newTitle = '';
-  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };  
-  @Input() tasks:Array<Task>;
+  newTitle = '';    
+  @Input() tasks:Array<Category>;
   @Output() newTask = new EventEmitter<qTask>();
 
   modalForm : FormGroup = new FormGroup({             
@@ -21,16 +21,8 @@ export class ModalwinComponent implements OnInit {
     "newTitles": new FormControl()
   });
 
-  constructor( private http: HttpClient) { 
-    this.tasks = [{
-      id: 1,
-      title: "Семья",
-      todos: [
-        {id: 1, text: "Инит значение", isCompleted: false},
-        {id: 2, text: "Инит значение", isCompleted: false}
-      ]
-    }
-    ]    
+  constructor(private httpService: HttpService){ 
+    this.tasks = [];    
   }
   ngOnInit(): void {
     this.newTitle = this.tasks[0].title;
@@ -38,6 +30,13 @@ export class ModalwinComponent implements OnInit {
 
   changeTitles(e:any) {
     this.newTitle = e.target.value;
+    if (e.target.value=='Новая категория') {
+      this.modalForm.controls['newTitles'].setValidators([Validators.required]);
+      this.modalForm.controls['newTitles'].updateValueAndValidity();
+    } else {
+      this.modalForm.controls['newTitles'].clearValidators();
+      this.modalForm.controls['newTitles'].updateValueAndValidity();
+    }
   }
 
   showModal() :void {
@@ -66,18 +65,20 @@ export class ModalwinComponent implements OnInit {
       this.newTitle ='';      
     }
     this.isShowModal = false;
-    this.http.post('https://blooming-dawn-85383.herokuapp.com/todos', jbody, this.options)
+    
+    this.httpService.addTask(jbody)
     .subscribe((data:any) =>{
       let newTask: qTask = {
         id: data.id,
         text: data.text,
         isCompleted: data.isCompleted,
-        title_id: data.title_id,
-        newTitle: this.modalForm.controls['newTitles'].value
+        category_id: data.title_id,
+        newCategory: this.modalForm.controls['newTitles'].value
       };
       this.modalForm.controls['newTitles'].setValue('');
-      this.sendNewTask(newTask);    
-      console.log(newTask);      
+      this.modalForm.controls['task'].setValue(''); 
+      this.modalForm.controls['titles'].setValue(this.tasks[0].title);
+      this.sendNewTask(newTask);
     }); 
   }
 

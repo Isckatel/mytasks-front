@@ -24,7 +24,7 @@
 .win {
     display: none;
     width: 400px;
-    height: 350px;
+    height: 365px;
     padding: 30px;
     background: #fff;
     border: 2px solid white;
@@ -42,7 +42,7 @@
 .win-min {
     display: none;
     width: 400px;
-    height: 265px;
+    height: 275px;
     padding: 30px;
     background: #fff;
     border: 2px solid white;
@@ -93,4 +93,8 @@ button {
 
 .newTitles {
     display: none;
+}
+
+.alert {    
+    color: red;    
 }
